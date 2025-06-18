@@ -1,0 +1,36 @@
+pip install databricks-sql-connector
+
+SQL-warehouse-small-cluster_PYTHON_CONNECT
+
+from databricks import sql
+import os
+
+connection = sql.connect(
+                        server_hostname = "adb-3330313079281414.14.azuredatabricks.net",
+                        http_path = "/sql/1.0/warehouses/de2066b82288a0c8",
+                        access_token = "<access-token>")
+
+cursor = connection.cursor()
+
+cursor.execute("SELECT * from range(10)")
+print(cursor.fetchall())
+
+cursor.close()
+connection.close()
+
+
+from databricks import sql
+import os
+
+connection = sql.connect(
+                        server_hostname = "adb-3330313079281414.14.azuredatabricks.net",
+                        http_path = "/sql/1.0/warehouses/de2066b82288a0c8",
+                        access_token = "")
+
+cursor = connection.cursor()
+
+cursor.execute("SELECT * from range(10)")
+print(cursor.fetchall())
+
+cursor.close()
+connection.close()
